@@ -1,0 +1,18 @@
+pair_style	lj/cut/coul/long 10.0
+pair_modify     mix arithmetic
+
+bond_style      hybrid harmonic morse
+angle_style     harmonic
+dihedral_style  none
+improper_style  none
+kspace_style    ewald  1e-5
+
+read_data       lammps.data
+
+neighbor	2.0 bin
+neigh_modify	every 1
+
+pair_coeff 2 2 0.155425 3.16549 #OW
+pair_coeff 1 1 0.0 0.0 #HW
+bond_coeff 1 harmonic 529.581 1.012       # OW-HW
+angle_coeff 1 37.95 113.24
