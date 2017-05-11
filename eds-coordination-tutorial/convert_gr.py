@@ -82,13 +82,13 @@ def main(infile, grtype, density, r0, m=12, n=6, reval=None, rmax=None, moment=0
         rmax = r[-1]
  
     if(w is not None):
-        afxn = cn_f2_fxn(gr,r,r0,w,m,n, moment)
+        afxn = cn_approx2_fxn(gr,r,r0,w,m,n, moment)
         efxn = cn_exact_fxn(gr,r,r0+0.5*w, moment)
     else:
         afxn = cn_approx_fxn(gr,r,r0,m,n, moment)
         efxn = cn_exact_fxn(gr,r,r0, moment)
  
-    print ('r0 = {}, n = {}, m = {}, Exact: {}, Approximate: {}'.format(r0, n, m, density * efxn(r[-1]), density * afxn(r[-1])))
+    print ('r0 = {}, n = {}, m = {}, w = {}, Exact: {}, Approximate: {}'.format(r0, n, m, 1.0 if w is None else w, density * efxn(r[-1]), density * afxn(r[-1])))
     if(reval is not None):
         if(w is not None):
             afxn = cn_approx2_fxn(gr,r,reval,w,m,n, moment)

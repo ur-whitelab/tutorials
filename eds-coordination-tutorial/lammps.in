@@ -1,0 +1,31 @@
+variable stride internal 250
+units		real
+atom_style	full
+
+
+include lammps.ff
+
+thermo          100
+thermo_style    custom step temp ke pe etotal
+
+timestep        0.5
+
+fix nvt all nvt temp 300. 300. 100.
+
+
+run 5000
+
+group oxygen type 2
+compute ljrdf oxygen rdf 500
+fix 1 all ave/time ${stride} 1 ${stride} c_ljrdf[*] file ${name}.rdf mode vector ave running overwrite
+
+fix plumed_1 all plumed plumedfile ${name}.plumed outfile plumed.log
+
+variable e equal etotal
+variable p equal pe
+variable T equal temp
+variable t equal time
+fix output all print ${stride} "$t $e $p $T" file ${name}.ener  title "#time energy potential_energy temperature" screen no
+
+run 100000
+

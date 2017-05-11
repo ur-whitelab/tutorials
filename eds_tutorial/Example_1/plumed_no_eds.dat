@@ -1,4 +1,0 @@
-dist: DISTANCE ATOMS=10,20
-#bias the distance
-#eds: EDS ARG=dist CENTER=0.8 PERIOD=100 TEMP=278
-PRINT ARG=dist FILE=colvars_no_eds.dat STRIDE=100

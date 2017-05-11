@@ -1,1 +1,0 @@
-The tutorial is hosted at http://www.che.rochester.edu/Projects/whitelab/. 
