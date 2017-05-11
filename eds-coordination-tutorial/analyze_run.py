@@ -59,7 +59,6 @@ def plot_cv(cns, labels, set_points):
     axes[0].legend(loc='best')
     fig.subplots_adjust(hspace=0)
     plt.setp([a.get_xticklabels() for a in fig.axes[:-1]], visible=False)
-    
         
 
 
@@ -104,8 +103,6 @@ def main():
     plot_temp(eners, names, ax)
     plt.savefig('temperature_comparison.png')
 
-    plt.figure(figsize=(4,8))
-    ax.set_title('Coordination Number')
     plot_cv(cns, names, set_points)
     plt.savefig('cn_comparison.png')
     
