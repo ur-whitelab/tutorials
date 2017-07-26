@@ -8,6 +8,8 @@ include lammps.ff
 #restore correct charges
 #set type 1 charge 0.410
 #set type 2 charge -0.820
+set type 1 charge 0.43
+set type 2 charge -0.860
 #set atoms
 
 
@@ -16,12 +18,16 @@ thermo_style    custom step temp ke pe etotal
 
 timestep        0.5
 
-fix nvt all nvt temp 300. 300. 100.
-
+fix nvt all nvt temp 300. 300. 1000.
 
 run 500
 
-fix plumed_1 all plumed plumedfile ${name}.plumed outfile plumed.log
+unfix nvt
+fix lan_nvt all langevin 300 300 ${stride} 45
+fix lan_nve all nve
+
+
+fix plumed_dyn all plumed plumedfile ${name}.plumed outfile plumed.log
 
 variable e equal etotal
 variable p equal pe
@@ -29,11 +35,10 @@ variable T equal temp
 variable t equal time
 fix output all print ${stride} "$t $e $p $T" file ${name}.ener  title "#time energy potential_energy temperature" screen no
 
-run 150000
+run 20000
 
 group oxygen type 2
 compute ljrdf oxygen rdf 500
-#fix 1 all ave/time 1 100 1000 c_ljrdf[*] file ${name}.rdf mode vector  ave one overwrite
-fix 1 all ave/time 1 100 1000 c_ljrdf[*] file ${name}.rdf mode vector ave running overwrite
+fix 1 all ave/time 100 1 100 c_ljrdf[*] file ${name}.rdf mode vector ave running overwrite
 
-run 10000
+run 20000

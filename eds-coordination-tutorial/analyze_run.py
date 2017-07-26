@@ -97,11 +97,7 @@ def plot_bias(eds_files,labels, N, M=8):
 
             
     axes[0,0].legend(loc='best')    
-    fig.subplots_adjust(hspace=0)
-
-        
-        
-
+    fig.subplots_adjust(hspace=0)        
     
 
 def main():
