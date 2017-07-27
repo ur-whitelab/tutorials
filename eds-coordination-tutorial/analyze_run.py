@@ -59,7 +59,7 @@ def plot_cv(cns, labels, set_points):
             ax.plot(data[:,0] / 1000, data[:,j+1] / set_points[j], label=l, color=cmap(i / N))
             #ax.set_ylim(0,2)
     for p,ax in zip(set_points, axes):
-        ax.axhline(y=1.0, linestyle='--', color='blue')
+        ax.axhline(y=1.0, linestyle='--', color='blue', label='set-point')
         #ax.get_yaxis().set_ticks([0,0.5,1,1.5])
     axes[0].legend(loc='best')    
     fig.subplots_adjust(hspace=0)
