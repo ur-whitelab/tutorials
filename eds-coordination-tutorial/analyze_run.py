@@ -22,6 +22,7 @@ def plot_traj_rdf(trajs, labels, ax):
     ax.legend(loc='best')
     ax.set_xlabel('$r$ [Å]')
     ax.set_ylabel('$g(r)$')
+    plt.tight_layout()
 
 def plot_rdf(rdfs, labels, ax):
     '''Plot the RDF'''
@@ -32,6 +33,7 @@ def plot_rdf(rdfs, labels, ax):
     ax.legend(loc='best')
     ax.set_xlabel('$r$ [Å]')
     ax.set_ylabel('$g(r)$')
+    plt.tight_layout()
     
 
 def plot_temp(eners, labels, ax, indices=[0,3]):

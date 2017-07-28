@@ -5,14 +5,6 @@ atom_style	full
 
 include lammps.ff
 
-#restore correct charges
-#set type 1 charge 0.410
-#set type 2 charge -0.820
-set type 1 charge 0.43
-set type 2 charge -0.860
-#set atoms
-
-
 thermo          100
 thermo_style    custom step temp ke pe etotal
 
